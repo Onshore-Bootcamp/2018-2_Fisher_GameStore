@@ -1,0 +1,11 @@
+------------------------------------------------------------------------------------------------------------------------
+5/24/2018 12:16:18 PM - fatal - GameDAO - GameDAO
+Column 'GameName' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at GameStoreTwo.GamesDAO.MapAllGames(DataRow dataRow) in C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreTwo\GamesDAO.cs:line 236
+------------------------------------------------------------------------------------------------------------------------
+5/24/2018 12:16:19 PM - fatal - GameDAO - GameDAO
+Column 'GameName' does not belong to table .
+   at GameStoreTwo.GamesDAO.MapAllGames(DataRow dataRow) in C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreTwo\GamesDAO.cs:line 248
+   at GameStoreTwo.GamesDAO.ViewAllGames() in C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreTwo\GamesDAO.cs:line 100

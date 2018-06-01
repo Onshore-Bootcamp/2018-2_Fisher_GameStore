@@ -1,0 +1,92 @@
+﻿@using GameStoreMVC.Models
+
+@model List<OrderPO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-family:fantasy">Index</h2>
+
+@*Creates the table for the Order Index View*@
+<table class="table table-striped table-hover">
+    @*Creates the headers of the Orders table*@
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Shipping Address
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Zip Code
+            </th>
+            <th>
+                Update
+            </th>
+            @*Checks to see if the current user is a Admin*@
+            @if (Session["RoleID"] != null)
+            {
+                if (Convert.ToInt16(Session["RoleID"]) <= 1)
+                {
+                    <th>
+                        Delete
+                    </th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (OrderPO item in Model)
+            {
+                <tr>
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        @item.Name
+                    </th>
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        @item.Address
+                    </th>
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        @item.Phone
+                    </th>
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        @item.ZipCode
+                    </th>
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        @Html.ActionLink("Update", "UpdateOrder", "Order", new { orderId = item.OrderID }, new { @class = "btn", style = "color:#4A559B; background-color:darkgray; border:double; border-color:black" })
+                    </th>
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 1)
+                        {
+                    <th style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+
+                        @Html.ActionLink("Delete", "DeleteOrder", "Order", new { orderId = item.OrderID }, new { @class = "btn btn-danger", onclick = "return deleteOrder()", style = "color:black; border:double; border-color:black" })
+                       
+                        <script>
+                            function deleteOrder() {
+                                var r = confirm("Are you sure you want to delete this order?");
+                                return r;
+                            }
+                        </script>
+                    </th>
+                        }
+                    }
+                </tr>
+            }
+        }
+        else if (TempData.ContainsKey("Message"))
+        {
+            <tr>
+                <td colspan="5">
+                    @TempData["Message"]
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

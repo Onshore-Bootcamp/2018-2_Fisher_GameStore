@@ -1,0 +1,49 @@
+﻿@using GameStoreMVC.Models
+
+@model OrderPO
+@{
+    /**/
+
+    ViewBag.Title = "Create";
+}
+
+<h2 class="text-center" style="font-family:fantasy">Create Order</h2>
+
+<div class="col-md-12">
+    @using (Html.BeginForm("Create", "Order"))
+    {
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Name)
+            <div>
+                @Html.TextBoxFor(model => Model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Name, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Address)
+            <div>
+                @Html.TextBoxFor(model => Model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Address, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Phone)
+            <div>
+                @Html.TextBoxFor(model => Model.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Phone, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.ZipCode)
+            <div>
+                @Html.TextBoxFor(model => Model.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.ZipCode, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Game")'"><span class="glyphicon glyphicon-ok"></span>Submit</button>
+    }
+</div>

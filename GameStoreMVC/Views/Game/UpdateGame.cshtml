@@ -1,0 +1,72 @@
+﻿@using GameStoreMVC.Models
+@using GameStoreTwo
+
+@model GamesPO
+@{
+    ViewBag.Title = "UpdateGame";
+}
+
+<h2 style="font-family:fantasy">UpdateGame</h2>
+
+<div class="col-md-12">
+
+    @using (Html.BeginForm("UpdateGame", "Game", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => Model.GameID)
+        <div class="form-horizontal">
+            @Html.LabelFor(model => Model.GameName)
+            <div class="form-group" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                @*Creates a textbox that allows you to update the game's name*@
+                @Html.TextBoxFor(model => Model.GameName, new { @class = "form-control" })
+
+                @*Create a Validation Message if there is no information or if the given information is incorrect*@
+                @Html.ValidationMessageFor(model => Model.GameName, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.System)
+            <div class="form-group">
+                @*Creates a drop down list that allows you to update the game's system*@
+                @Html.DropDownList("System", new SelectList(Enum.GetValues(typeof(GamesDAO.System))), "Select System", new { @class = "form-control" })
+
+                @*Create a Validation Message if there is no game selected*@
+                @Html.ValidationMessageFor(model => Model.GameName, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Genre)
+            <div class="form-group">
+                @*Creates a textbox that allows you to update the game's genre*@
+                @Html.TextBoxFor(model => Model.Genre, new { @class = "form-control" })
+
+                @*Create a Validation Message if there is no information or if the given information is incorrect*@
+                @Html.ValidationMessageFor(model => Model.Genre, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.ReleaseDate)
+            <div class="form-group">
+                @*Creates a textbox that allows you to update the game's *@
+                @Html.TextBoxFor(model => Model.ReleaseDate, new { @class = "form-control" })
+
+                @*Create a Validation Message if there is no information or if the given information is incorrect*@
+                @Html.ValidationMessageFor(model => Model.ReleaseDate, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Price)
+            <div class="form-group">
+                @*Creates a textbox that allows you to update the game's price*@
+                @Html.TextBoxFor(model => Model.Price, new { @class = "form-control" })
+
+                @*Create a Validation Message if there is no information or if the given information is incorrect*@
+                @Html.ValidationMessageFor(model => Model.Price, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>Submit</button>
+    }
+    </div>

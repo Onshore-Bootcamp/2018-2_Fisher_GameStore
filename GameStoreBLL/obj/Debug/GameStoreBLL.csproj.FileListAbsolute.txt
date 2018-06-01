@@ -1,0 +1,6 @@
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\bin\Debug\GameStoreBLL.dll
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\bin\Debug\GameStoreBLL.pdb
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\obj\Debug\GameStoreBLL.csprojResolveAssemblyReference.cache
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\obj\Debug\GameStoreBLL.csproj.CoreCompileInputs.cache
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\obj\Debug\GameStoreBLL.dll
+C:\Users\Fisher Foster\source\repos\GameStoreTwo\GameStoreBLL\obj\Debug\GameStoreBLL.pdb

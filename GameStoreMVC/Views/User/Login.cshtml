@@ -1,0 +1,31 @@
+﻿@using GameStoreMVC.Models
+@model LoginPO
+@{
+    /**/
+
+    ViewBag.Title = "Login";
+}
+
+<h2 style="font-family:fantasy">Login</h2>
+<div class="col-md-12">
+
+    @using (Html.BeginForm("Login", "User", FormMethod.Post))
+    {
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Username)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Username, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Password)
+            <div class="form-group">
+                @Html.PasswordFor(model => Model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Password, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>Submit</button>
+    }
+</div>

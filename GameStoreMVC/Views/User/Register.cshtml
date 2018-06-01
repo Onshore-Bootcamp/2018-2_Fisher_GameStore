@@ -1,0 +1,54 @@
+﻿@using GameStoreMVC.Models;
+@model UserPO
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2 style="font-family:fantasy">Register</h2>
+<div class="col-md-12">
+
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Firstname)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Firstname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Firstname, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Lastname)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Lastname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Lastname, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Username)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Username, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Password)
+            <div class="form-group">
+                @Html.PasswordFor(model => Model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Password, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.EmailAddress)
+            <div class="form-group">
+                @Html.TextBoxFor(model => Model.EmailAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.EmailAddress, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>Submit</button>
+    }
+</div>

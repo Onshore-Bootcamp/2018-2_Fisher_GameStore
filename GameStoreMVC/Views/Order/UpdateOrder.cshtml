@@ -1,0 +1,48 @@
+﻿@using GameStoreMVC.Models
+
+@model OrderPO
+@{
+    ViewBag.Title = "UpdateOrder";
+}
+
+<h2 style="font-family:fantasy">UpdateOrder</h2>
+
+<div class="col-md-12">
+    @using (Html.BeginForm("UpdateOrder", "Order"))
+    {
+        @Html.HiddenFor(model => Model.OrderID)
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Name)
+            <div>
+                @Html.TextBoxFor(model => Model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Name, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Address)
+            <div>
+                @Html.TextBoxFor(model => Model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Address, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.Phone)
+            <div>
+                @Html.TextBoxFor(model => Model.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.Phone, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            @Html.LabelFor(model => Model.ZipCode)
+            <div>
+                @Html.TextBoxFor(model => Model.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => Model.ZipCode, "", new { @class = "label label-danger" })
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>Submit</button>
+    }
+</div>

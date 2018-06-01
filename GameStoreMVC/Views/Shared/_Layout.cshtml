@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SilverBullet Gaming", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+                    @*Home*@
+                    <li><a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+
+
+                    @*Games*@
+                    <li>@Html.ActionLink("Games", "Index", "Game")</li>
+
+
+                    @*Orders*@
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 3)
+                        {
+                            <li>@Html.ActionLink("Orders", "Index", "Order")</li>
+                        }
+                    }
+
+
+
+                    @*CreateGame*@
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 2)
+                        {
+                            <li>@Html.ActionLink("CreateGame", "CreateGame", "Game")</li>
+                        }
+                    }
+
+
+
+                    @*ViewUsers*@
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 2)
+                        {
+                            <li>@Html.ActionLink("ViewUsers", "Index", "User")</li>
+                        }
+
+                    }
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["UserID"] != null)
+                    {
+                        <style>
+                            a {
+                                float: left !important;
+                            }
+
+                            .badge {
+                                float: right !important;
+                            }
+                        </style>
+                        <li>
+                            @if (Session["Cart"] != null)
+                            {
+
+                                List<int> cart = Session["Cart"] as List<int>;
+                                int count = cart.Count;
+
+                                <span class="navbar-btn badge">@count</span>
+                                @Html.ActionLink("Cart", "Cart", "Game")
+                            }
+                        </li>
+                        <li>@Html.ActionLink((string)Session["Username"], "", "")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login", "User")"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+                        <li><a href="@Url.Action("Register", "User")"><span class="glyphicon glyphicon-plus"></span>Register</a></li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content myContainer">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SilverBullet Gaming</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <style>
+        .mine {
+            font-family: 'Times New Roman', Times, serif
+        }
+    </style>
+</body>
+</html>

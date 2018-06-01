@@ -1,0 +1,120 @@
+﻿@using GameStoreMVC.Models;
+@model List<GamesPO>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 style="font-family:fantasy">Index</h2>
+<html>
+<body>
+    <div class="myContainer">
+        @*Creates a table for all games*@
+        <table class="table table-striped table-hover">
+            @*Creates the header of the table*@
+            <thead>
+                <tr>
+                    <th>
+                        Game
+                    </th>
+                    <th>
+                        System
+                    </th>
+                    <th>
+                        Genre
+                    </th>
+                    <th>
+                        Release Date
+                    </th>
+                    <th>
+                        Price
+                    </th>
+
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 2)
+                        {
+                            <th>
+                                Update/Delete
+                            </th>
+                        }
+                    }
+
+                    @if (Session["RoleID"] != null)
+                    {
+                        if (Convert.ToInt16(Session["RoleID"]) <= 3)
+                        {
+                            <th>
+                                Purchase
+                            </th>
+                        }
+                    }
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (GamesPO item in Model.OrderBy(item => item.System))
+                    {
+                        <tr>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @item.GameName
+                            </td>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @item.System
+                            </td>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @item.Genre
+                            </td>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @item.ReleaseDate.ToShortDateString()
+                            </td>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @item.Price
+                            </td>
+
+                            @if (Session["RoleID"] != null)
+                            {
+                                if (Convert.ToInt16(Session["RoleID"]) <= 2)
+                                {
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                @Html.ActionLink("Update", "UpdateGame", "Game", new { gameId = item.GameID }, new { @class = "btn", style = "color:#4A559B; background-color:darkgray; border:double; border-color:black; margin-right: 10px" })
+                                @Html.ActionLink("Delete", "DeleteGame", "Game", new { gameID = item.GameID }, new { @class = "btn btn-danger", onclick = "return deleteGame()", style = "color:black; border:double; border-color:black" })
+                                <script>
+                                    function deleteGame() {
+                                        var r = confirm("Are you sure you want to delete this game?");
+                                        return r;
+                                    }
+                                </script>
+                            </td>
+                                }
+                            }
+
+                            @if (Session["RoleID"] != null)
+                            {
+                                if (Convert.ToInt16(Session["RoleID"]) <= 3)
+                                {
+                                    <td>
+                                        <button style="background-color:grey; border:solid" onclick="location.href='@Url.Action("AddItemToCart", "Game", new { gameID = item.GameID })'"><span class="glyphicon glyphicon-ok"></span>Buy</button>
+                                    </td>
+                                }
+                            }
+
+
+
+                        </tr>
+                    }
+                }
+                else if (TempData.ContainsKey("Message"))
+                {
+                    <tr>
+                        <td colspan="6">
+                            @TempData["Message"]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</body>
+</html>
